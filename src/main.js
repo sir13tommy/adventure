@@ -15,6 +15,7 @@ class Game extends Phaser.Game {
       height: config.gameHeight,
       renderer: Phaser.AUTO,
       scaleMode: Phaser.ScaleManager.SHOW_ALL,
+      enableDebug: __DEV__,
       alignH: true,
       alignV: true
     })

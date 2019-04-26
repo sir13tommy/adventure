@@ -12,6 +12,7 @@ export default class extends Phaser.State {
     
     game.physics.startSystem(Phaser.Physics.P2JS)
     game.physics.p2.gravity.y = gravity
+    game.physics.p2.world.defaultContactMaterial.friction = 0;
 
     map = game.add.tilemap('level-1')
     map.addTilesetImage('tiles', 'tiles')
@@ -34,6 +35,8 @@ export default class extends Phaser.State {
     player.body.collideWorldBounds = true
     player.body.velocity.x = 800
 
+    player.body.fixedRotation = true
+
     camera.follow(player, Phaser.Camera.FOLLOW_PLATFORMER)
 
     this._enableInputListener()
@@ -46,7 +49,6 @@ export default class extends Phaser.State {
   }
 
   update () {
-    const { camera } = this
   }
 
   render() {
