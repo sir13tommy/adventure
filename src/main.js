@@ -13,7 +13,7 @@ class Game extends Phaser.Game {
     super({
       width: config.gameWidth,
       height: config.gameHeight,
-      renderer: Phaser.AUTO,
+      renderer: Phaser.CANVAS,
       scaleMode: Phaser.ScaleManager.SHOW_ALL,
       enableDebug: __DEV__,
       alignH: true,
