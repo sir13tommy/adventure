@@ -2,7 +2,6 @@
 import Phaser from 'phaser'
 
 let map
-let ground
 let player
 let gravity = 5000
 
@@ -20,26 +19,27 @@ export default class extends Phaser.State {
     const enemieCollisionGroup = game.physics.p2.createCollisionGroup()
 
     map = game.add.tilemap('level-1')
-    map.addTilesetImage('enemies', 'enemies')
     map.addTilesetImage('tiles', 'tiles')
-
-    map.setCollisionByExclusion([])
-    
-    const enemies = map.createLayer('enemies')
-    const enemiesObjects = game.physics.p2.convertTilemap(map, enemies)
-    enemiesObjects.forEach(enemieObj => {
-      enemieObj.setCollisionGroup(enemieCollisionGroup)
-      enemieObj.collides(playerCollisionGroup)
-    })
-    
-    ground = map.createLayer('ground')
-    ground.resizeWorld()
-    game.physics.p2.setBoundsToWorld(true, true, true, true, true)
+    map.addTilesetImage('enemies', 'enemies')
+        
+    const ground = map.createLayer('ground')
+    map.setCollisionByExclusion([], true, 'ground')
     const tiles = game.physics.p2.convertTilemap(map, ground)
     tiles.forEach(tile => {
       tile.setCollisionGroup(mapCollisionGroup)
       tile.collides(playerCollisionGroup)
     })
+    
+    const enemies = map.createLayer('enemies')
+    map.setCollisionByExclusion([], true, 'enemies')
+    const enemiesObjects = game.physics.p2.convertTilemap(map, enemies)
+    enemiesObjects.forEach(enemieObj => {
+      enemieObj.setCollisionGroup(enemieCollisionGroup)
+      enemieObj.collides(playerCollisionGroup)
+    })
+
+    ground.resizeWorld()
+    game.physics.p2.setBoundsToWorld(true, true, true, true, true)
 
     let playerPos
     map.objects.points.forEach(object =>{ 
@@ -52,7 +52,7 @@ export default class extends Phaser.State {
     player.body.setCollisionGroup(playerCollisionGroup)
     player.body.collides(mapCollisionGroup)
     player.body.collides(enemieCollisionGroup, () => {
-
+      this.playerDie()
     })
     player.body.velocity.x = 800
 
@@ -75,7 +75,7 @@ export default class extends Phaser.State {
     }
   }
   playerDie () {
-    debugger
+    const { camera } = this
     if (player.alive) {
       player.kill()
       camera.shake()
