@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>.dist/enemies.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -180,9 +180,30 @@
             <false/>
         </struct>
         <key>individualSpriteSettings</key>
-        <map type="IndividualSpriteSettingsMap"/>
+        <map type="IndividualSpriteSettingsMap">
+            <key type="filename">enemies/Mac 128.png</key>
+            <key type="filename">enemies/Mace.png</key>
+            <key type="filename">enemies/Saw.png</key>
+            <key type="filename">enemies/Spike_Left&amp;down.png</key>
+            <key type="filename">enemies/Spike_Up.png</key>
+            <key type="filename">enemies/Spike_down.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9Paddings</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+        </map>
         <key>fileList</key>
-        <array/>
+        <array>
+            <filename>enemies</filename>
+        </array>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>
